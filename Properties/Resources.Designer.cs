@@ -63,9 +63,9 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CandadoAbierto {
+        internal static System.Drawing.Bitmap Fond {
             get {
-                object obj = ResourceManager.GetObject("CandadoAbierto", resourceCulture);
+                object obj = ResourceManager.GetObject("Fond", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap CandadoCerrado {
+        internal static System.Drawing.Bitmap Fondo {
             get {
-                object obj = ResourceManager.GetObject("CandadoCerrado", resourceCulture);
+                object obj = ResourceManager.GetObject("Fondo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,29 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LlaveRoja {
+        internal static System.Drawing.Bitmap LlaveFinal {
             get {
-                object obj = ResourceManager.GetObject("LlaveRoja", resourceCulture);
+                object obj = ResourceManager.GetObject("LlaveFinal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Puerta {
+            get {
+                object obj = ResourceManager.GetObject("Puerta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PuertaAbierta {
+            get {
+                object obj = ResourceManager.GetObject("PuertaAbierta", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

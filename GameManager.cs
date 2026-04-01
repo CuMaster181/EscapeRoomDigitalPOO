@@ -56,7 +56,7 @@ namespace EscapeRoomDigitalPOO
             if (correcto)
             {
                 Puntaje += 10;
-                inventario.Add(new Item("llave", "Llave", Properties.Resources.LlaveRoja));
+                inventario.Add(new Item("llave", "Llave", Properties.Resources.LlaveFinal));
                 SiguienteAcertijo();
             }
 
@@ -64,6 +64,7 @@ namespace EscapeRoomDigitalPOO
         }
 
         public bool JuegoTerminado()
+
         {
             return AcertijoActual == null;
         }

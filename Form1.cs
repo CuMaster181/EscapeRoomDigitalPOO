@@ -15,8 +15,8 @@ namespace EscapeRoomDigitalPOO
         {
             gameManager = new GameManager();
             pbCandado.Tag = "llave_roja";
-            pbLlaveRoja.Image = Properties.Resources.LlaveRoja;
-            pbCandado.Image = Properties.Resources.CandadoCerrado;
+            pbLlaveRoja.Image = Properties.Resources.LlaveFinal;
+            pbCandado.Image = Properties.Resources.Puerta;
 
             pbLlaveRoja.SizeMode = PictureBoxSizeMode.StretchImage;
             pbCandado.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -33,6 +33,7 @@ namespace EscapeRoomDigitalPOO
 
             lblPregunta.Text = gameManager.AcertijoActual.Pregunta;
         }
+
         private void btnResponder_Click(object sender, EventArgs e)
         {
             try
@@ -149,7 +150,7 @@ namespace EscapeRoomDigitalPOO
             {
                 AgregarLog("Abriste el candado");
 
-                pb.Image = Properties.Resources.CandadoAbierto;
+                pb.Image = Properties.Resources.PuertaAbierta;
 
                 ConsumirItem();
 
@@ -160,14 +161,12 @@ namespace EscapeRoomDigitalPOO
             }
         }
 
-        private void pbLlaveRoja_Click_1(object sender, EventArgs e)
+        private void pbLlaveRoja_Click(object sender, EventArgs e)
         {
-       
-
             Item llave = new Item(
                 "llave_roja",
                 "LlaveRoja",
-                Properties.Resources.LlaveRoja
+                Properties.Resources.LlaveFinal
             );
 
             AgregarItem(llave);
