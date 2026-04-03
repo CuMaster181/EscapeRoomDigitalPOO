@@ -1,26 +1,42 @@
 namespace EscapeRoomDigitalPOO
 {
-    public partial class Form1 : Form
+    public partial class SalaPrincipal : Form
     {
         private GameManager gameManager;
-
-        Item itemSeleccionado = null;
-        PictureBox pbSeleccionado = null;
-        public Form1()
+        private int estadoEstanteria = 0;
+        Item itemSeleccionado = null!;
+        PictureBox pbSeleccionado = null!;
+        public SalaPrincipal()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void SalaPrincipal_Load(object sender, EventArgs e)
         {
             gameManager = new GameManager();
-            pbCandado.Tag = "llave_roja";
-            pbLlaveRoja.Image = Properties.Resources.LlaveFinal;
-            pbCandado.Image = Properties.Resources.Puerta;
+            pbPuertaFinal.Tag = "llave_Final";
+            pbLlaveFinal.Image = Properties.Resources.LlaveFinal;
+            pbPuertaFinal.Image = Properties.Resources.Puerta;
 
-            pbLlaveRoja.SizeMode = PictureBoxSizeMode.StretchImage;
-            pbCandado.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
+            pbEstanteria.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbLlaveFinal.SizeMode = PictureBoxSizeMode.Zoom;
+            pbPuertaFinal.SizeMode = PictureBoxSizeMode.Zoom;
+            pbEscenario.SizeMode = PictureBoxSizeMode.Zoom;
             MostrarAcertijo();
+
+            pbEscenario.Image = Properties.Resources.Cocina;
+
+            pbLlaveFinal.Image = Properties.Resources.LlaveFinal;
+            pbPuertaFinal.Image = Properties.Resources.Puerta;
+            pbLlaveFinal.Parent = pbEscenario;
+            pbPuertaFinal.Parent = pbEscenario;
+
+            pbLlaveFinal.BackColor = Color.Transparent;
+            pbPuertaFinal.BackColor = Color.Transparent;
+
+            pbLlaveFinal.Location = new Point(50, 100);
+            pbPuertaFinal.Location = new Point(391, 75);
         }
         private void MostrarAcertijo()
         {
@@ -33,41 +49,7 @@ namespace EscapeRoomDigitalPOO
 
             lblPregunta.Text = gameManager.AcertijoActual.Pregunta;
         }
-
-        private void btnResponder_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string respuesta = txtRespuesta.Text;
-
-                bool correcto = gameManager.ResolverAcertijo(respuesta);
-
-                if (correcto)
-                {
-                    MessageBox.Show("Correcto");
-                }
-                else
-                {
-                    int intentos = gameManager.AcertijoActual.IntentosRestantes;
-
-                    if (intentos <= 0)
-                    {
-                        MessageBox.Show("Perdiste");
-                        Application.Exit();
-                        return;
-                    }
-
-                    MessageBox.Show("Incorrecto. Intentos: " + intentos);
-                }
-
-                MostrarAcertijo();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-        private void MostrarInventario()
+        public void MostrarInventario()
         {
             flpInventario.Controls.Clear();
 
@@ -135,7 +117,7 @@ namespace EscapeRoomDigitalPOO
             pbSeleccionado = null;
         }
 
-        private void pbCandado_Click(object sender, EventArgs e)
+        private void pbPuertaFinal_Click(object sender, EventArgs e)
         {
             if (itemSeleccionado == null)
             {
@@ -161,17 +143,67 @@ namespace EscapeRoomDigitalPOO
             }
         }
 
-        private void pbLlaveRoja_Click(object sender, EventArgs e)
+        private void pbLlaveFinal_Click(object sender, EventArgs e)
         {
-            Item llave = new Item(
-                "llave_roja",
-                "LlaveRoja",
+            Item Llave = new Item(
+                "llave_Final",
+                "LlaveFinal",
                 Properties.Resources.LlaveFinal
             );
 
-            AgregarItem(llave);
+            AgregarItem(Llave);
 
-            pbLlaveRoja.Visible = false;
+            pbLlaveFinal.Visible = false;
+        }
+        private bool CodigoCorrecto(string codigo)
+        {
+            return codigo == "2007";
+        }
+
+        private void pbEstanteria_Click(object sender, EventArgs e)
+        {
+
+            if (estadoEstanteria == 0)
+            {
+                string codigo = Microsoft.VisualBasic.Interaction.InputBox(
+                "Ingresa el código:",
+                "Caja",
+                ""
+                );
+
+                if (CodigoCorrecto(codigo))
+                {
+                    estadoEstanteria = 1;
+                    pbEstanteria.Image = Properties.Resources.EstanteriaPalanca;
+
+                    AgregarLog("La estantería se abrió");
+                }
+                else
+                {
+                    AgregarLog("Código incorrecto");
+                }
+            }
+
+            else if (estadoEstanteria == 1)
+            {
+                estadoEstanteria = 2;
+                pbEstanteria.Image = Properties.Resources.EstanteriaAbierta;
+
+                Item premio = new Item(
+                    "palanca",
+                    "Palanca",
+                    Properties.Resources.Palanca
+                );
+
+                AgregarItem(premio);
+
+                AgregarLog("Encontraste una Palanca");
+            }
+
+            else
+            {
+                AgregarLog("La estantería está vacía");
+            }
         }
     }
 }

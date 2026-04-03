@@ -63,6 +63,46 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cocina {
+            get {
+                object obj = ResourceManager.GetObject("Cocina", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EstanteriaAbierta {
+            get {
+                object obj = ResourceManager.GetObject("EstanteriaAbierta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EstanteriaCerrada {
+            get {
+                object obj = ResourceManager.GetObject("EstanteriaCerrada", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EstanteriaPalanca {
+            get {
+                object obj = ResourceManager.GetObject("EstanteriaPalanca", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Fond {
             get {
                 object obj = ResourceManager.GetObject("Fond", resourceCulture);
@@ -86,6 +126,16 @@ namespace EscapeRoomDigitalPOO.Properties {
         internal static System.Drawing.Bitmap LlaveFinal {
             get {
                 object obj = ResourceManager.GetObject("LlaveFinal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Palanca {
+            get {
+                object obj = ResourceManager.GetObject("Palanca", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
