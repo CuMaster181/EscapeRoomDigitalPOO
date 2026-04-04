@@ -1,44 +1,38 @@
+using System.Runtime.CompilerServices;
+
 namespace EscapeRoomDigitalPOO
 {
-    public partial class SalaPrincipal : Form
+    public partial class Escenario1 : Form
     {
         private GameManager gameManager;
-        private int estadoEstanteria = 0;
+        private int estadoPuerta = 0;
         Item itemSeleccionado = null!;
         PictureBox pbSeleccionado = null!;
-        public SalaPrincipal()
+        public Escenario1(GameManager gm)
         {
             InitializeComponent();
+            gameManager = gm;
         }
 
         private void SalaPrincipal_Load(object sender, EventArgs e)
         {
-            gameManager = new GameManager();
-            pbPuertaFinal.Tag = "llave_Final";
-            pbLlaveFinal.Image = Properties.Resources.LlaveFinal;
-            pbPuertaFinal.Image = Properties.Resources.Puerta;
-
+            MostrarInventario();
             pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
             pbEstanteria.SizeMode = PictureBoxSizeMode.StretchImage;
-            pbLlaveFinal.SizeMode = PictureBoxSizeMode.Zoom;
-            pbPuertaFinal.SizeMode = PictureBoxSizeMode.Zoom;
             pbEscenario.SizeMode = PictureBoxSizeMode.Zoom;
-            MostrarAcertijo();
 
             pbEscenario.Image = Properties.Resources.Cocina;
 
-            pbLlaveFinal.Image = Properties.Resources.LlaveFinal;
-            pbPuertaFinal.Image = Properties.Resources.Puerta;
-            pbLlaveFinal.Parent = pbEscenario;
-            pbPuertaFinal.Parent = pbEscenario;
+            if (gameManager.EstadoEstanteria == 0)
+                pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
 
-            pbLlaveFinal.BackColor = Color.Transparent;
-            pbPuertaFinal.BackColor = Color.Transparent;
+            else if (gameManager.EstadoEstanteria == 1)
+                pbEstanteria.Image = Properties.Resources.EstanteriaPalanca;
 
-            pbLlaveFinal.Location = new Point(50, 100);
-            pbPuertaFinal.Location = new Point(391, 75);
+            else if (gameManager.EstadoEstanteria == 2)
+                pbEstanteria.Image = Properties.Resources.EstanteriaAbierta;
         }
-        private void MostrarAcertijo()
+        /*private void MostrarAcertijo()
         {
             if (gameManager.JuegoTerminado())
             {
@@ -49,24 +43,30 @@ namespace EscapeRoomDigitalPOO
 
             lblPregunta.Text = gameManager.AcertijoActual.Pregunta;
         }
-        public void MostrarInventario()
+        */
+        private void MostrarInventario()
         {
             flpInventario.Controls.Clear();
 
             foreach (var item in gameManager.Inventario)
             {
-                Button btn = new Button();
-                btn.Text = item.Nombre;
+                PictureBox pb = new PictureBox();
+                pb.Width = 50;
+                pb.Height = 50;
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pb.Image = item.Imagen;
+                pb.Tag = item;
 
-                btn.Click += (s, e) =>
+                pb.Click += (s, e) =>
                 {
-                    MessageBox.Show("Usaste: " + item.Nombre);
+                    MessageBox.Show("Seleccionaste: " + item.Nombre);
                 };
 
-                flpInventario.Controls.Add(btn);
+
+                flpInventario.Controls.Add(pb);
             }
         }
-        private void GuardarPuntaje()
+        /*private void GuardarPuntaje()
         {
             try
             {
@@ -77,6 +77,7 @@ namespace EscapeRoomDigitalPOO
                 MessageBox.Show("Error al guardar");
             }
         }
+        */
         private void AgregarLog(string mensaje)
         {
             txtLog.AppendText(mensaje + Environment.NewLine);
@@ -92,7 +93,7 @@ namespace EscapeRoomDigitalPOO
             pb.Image = item.Imagen;
             pb.Tag = item;
 
-            pb.Click += SeleccionarItem;
+            pb.Click += SeleccionarItem!;
 
             flpInventario.Controls.Add(pb);
 
@@ -105,7 +106,7 @@ namespace EscapeRoomDigitalPOO
             itemSeleccionado = pb.Tag as Item;
             pbSeleccionado = pb;
 
-            AgregarLog("Seleccionaste: " + itemSeleccionado.Nombre);
+            AgregarLog("Seleccionaste: " + itemSeleccionado!.Nombre);
         }
         private void ConsumirItem()
         {
@@ -113,47 +114,8 @@ namespace EscapeRoomDigitalPOO
 
             flpInventario.Controls.Remove(pbSeleccionado);
 
-            itemSeleccionado = null;
-            pbSeleccionado = null;
-        }
-
-        private void pbPuertaFinal_Click(object sender, EventArgs e)
-        {
-            if (itemSeleccionado == null)
-            {
-                AgregarLog("Selecciona un objeto primero");
-                return;
-            }
-
-            PictureBox pb = sender as PictureBox;
-            string llaveNecesaria = pb.Tag.ToString();
-
-            if (itemSeleccionado.Id == llaveNecesaria)
-            {
-                AgregarLog("Abriste el candado");
-
-                pb.Image = Properties.Resources.PuertaAbierta;
-
-                ConsumirItem();
-
-            }
-            else
-            {
-                AgregarLog("Ese objeto no sirve aquí ?");
-            }
-        }
-
-        private void pbLlaveFinal_Click(object sender, EventArgs e)
-        {
-            Item Llave = new Item(
-                "llave_Final",
-                "LlaveFinal",
-                Properties.Resources.LlaveFinal
-            );
-
-            AgregarItem(Llave);
-
-            pbLlaveFinal.Visible = false;
+            itemSeleccionado = null!;
+            pbSeleccionado = null!;
         }
         private bool CodigoCorrecto(string codigo)
         {
@@ -162,48 +124,54 @@ namespace EscapeRoomDigitalPOO
 
         private void pbEstanteria_Click(object sender, EventArgs e)
         {
-
-            if (estadoEstanteria == 0)
+            if (gameManager.EstadoEstanteria == 0)
             {
                 string codigo = Microsoft.VisualBasic.Interaction.InputBox(
-                "Ingresa el código:",
-                "Caja",
-                ""
+                    "Ingresa el código:",
+                    "Estantería",
+                    ""
                 );
 
                 if (CodigoCorrecto(codigo))
                 {
-                    estadoEstanteria = 1;
+                    gameManager.EstadoEstanteria = 1;
                     pbEstanteria.Image = Properties.Resources.EstanteriaPalanca;
 
-                    AgregarLog("La estantería se abrió");
+                    AgregarLog("La estantería se abrió ");
                 }
                 else
                 {
-                    AgregarLog("Código incorrecto");
+                    AgregarLog("Código incorrecto ");
                 }
             }
 
-            else if (estadoEstanteria == 1)
+            else if (gameManager.EstadoEstanteria == 1)
             {
-                estadoEstanteria = 2;
+                gameManager.EstadoEstanteria = 2;
+
                 pbEstanteria.Image = Properties.Resources.EstanteriaAbierta;
 
-                Item premio = new Item(
+                Item palanca = new Item(
                     "palanca",
                     "Palanca",
                     Properties.Resources.Palanca
                 );
 
-                AgregarItem(premio);
+                AgregarItem(palanca);
 
-                AgregarLog("Encontraste una Palanca");
+                AgregarLog("Encontraste una Palanca ");
             }
 
-            else
+            else if (gameManager.EstadoEstanteria == 2)
             {
                 AgregarLog("La estantería está vacía");
             }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Sala sala = new Sala(gameManager);
+            sala.Show();
+            this.Hide();
         }
     }
 }

@@ -11,6 +11,8 @@ namespace EscapeRoomDigitalPOO
         private List<Acertijo> acertijos;
         private List<Item> inventario;
 
+        public bool LlaveRecogida { get; set; }
+        public int EstadoEstanteria = 0;
         public int Puntaje { get; set; }
         public Acertijo AcertijoActual { get; set; }
 
@@ -38,7 +40,7 @@ namespace EscapeRoomDigitalPOO
         {
             if (acertijos.Count == 0)
             {
-                AcertijoActual = null;
+                AcertijoActual = null!;
                 return;
             }
 

@@ -1,6 +1,6 @@
 ﻿namespace EscapeRoomDigitalPOO
 {
-    partial class SalaPrincipal
+    partial class Escenario1
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,17 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             flpInventario = new FlowLayoutPanel();
             lblPregunta = new Label();
             txtRespuesta = new TextBox();
-            pbLlaveFinal = new PictureBox();
-            pbPuertaFinal = new PictureBox();
             txtLog = new TextBox();
             pbEscenario = new PictureBox();
             pbEstanteria = new PictureBox();
-            flpInventario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pbLlaveFinal).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbPuertaFinal).BeginInit();
+            button1 = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
             ((System.ComponentModel.ISupportInitialize)pbEscenario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbEstanteria).BeginInit();
             SuspendLayout();
@@ -46,11 +44,9 @@
             // flpInventario
             // 
             flpInventario.BackColor = Color.Transparent;
-            flpInventario.Controls.Add(lblPregunta);
-            flpInventario.Controls.Add(txtRespuesta);
-            flpInventario.Location = new Point(533, 12);
+            flpInventario.Location = new Point(584, 12);
             flpInventario.Name = "flpInventario";
-            flpInventario.Size = new Size(255, 202);
+            flpInventario.Size = new Size(204, 202);
             flpInventario.TabIndex = 0;
             // 
             // lblPregunta
@@ -58,7 +54,7 @@
             lblPregunta.AutoSize = true;
             lblPregunta.BackColor = Color.Black;
             lblPregunta.ForeColor = SystemColors.ButtonHighlight;
-            lblPregunta.Location = new Point(3, 0);
+            lblPregunta.Location = new Point(589, 244);
             lblPregunta.Name = "lblPregunta";
             lblPregunta.Size = new Size(85, 20);
             lblPregunta.TabIndex = 2;
@@ -66,37 +62,15 @@
             // 
             // txtRespuesta
             // 
-            txtRespuesta.Location = new Point(3, 23);
+            txtRespuesta.Location = new Point(589, 267);
             txtRespuesta.Multiline = true;
             txtRespuesta.Name = "txtRespuesta";
             txtRespuesta.Size = new Size(199, 27);
             txtRespuesta.TabIndex = 1;
             // 
-            // pbLlaveFinal
-            // 
-            pbLlaveFinal.BackColor = Color.Transparent;
-            pbLlaveFinal.Location = new Point(136, 333);
-            pbLlaveFinal.Name = "pbLlaveFinal";
-            pbLlaveFinal.Size = new Size(54, 56);
-            pbLlaveFinal.TabIndex = 3;
-            pbLlaveFinal.TabStop = false;
-            pbLlaveFinal.Click += pbLlaveFinal_Click;
-            // 
-            // pbPuertaFinal
-            // 
-            pbPuertaFinal.BackColor = Color.Transparent;
-            pbPuertaFinal.Image = Properties.Resources.Puerta;
-            pbPuertaFinal.Location = new Point(371, 165);
-            pbPuertaFinal.Name = "pbPuertaFinal";
-            pbPuertaFinal.Size = new Size(189, 188);
-            pbPuertaFinal.SizeMode = PictureBoxSizeMode.Zoom;
-            pbPuertaFinal.TabIndex = 4;
-            pbPuertaFinal.TabStop = false;
-            pbPuertaFinal.Click += pbPuertaFinal_Click;
-            // 
             // txtLog
             // 
-            txtLog.Location = new Point(536, 236);
+            txtLog.Location = new Point(589, 313);
             txtLog.Multiline = true;
             txtLog.Name = "txtLog";
             txtLog.Size = new Size(169, 73);
@@ -115,6 +89,7 @@
             // 
             // pbEstanteria
             // 
+            pbEstanteria.BackColor = Color.Transparent;
             pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
             pbEstanteria.Location = new Point(86, 12);
             pbEstanteria.Name = "pbEstanteria";
@@ -124,26 +99,41 @@
             pbEstanteria.TabStop = false;
             pbEstanteria.Click += pbEstanteria_Click;
             // 
-            // SalaPrincipal
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.BackgroundImage = Properties.Resources.Fond;
+            button1.Location = new Point(450, 235);
+            button1.Name = "button1";
+            button1.Size = new Size(62, 29);
+            button1.TabIndex = 8;
+            button1.Text = "Sala";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
+            // Escenario1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
             BackgroundImage = Properties.Resources.Fondo;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
+            Controls.Add(lblPregunta);
             Controls.Add(pbEstanteria);
+            Controls.Add(txtRespuesta);
             Controls.Add(txtLog);
-            Controls.Add(pbLlaveFinal);
-            Controls.Add(pbPuertaFinal);
             Controls.Add(flpInventario);
             Controls.Add(pbEscenario);
-            Name = "SalaPrincipal";
+            Name = "Escenario1";
             Text = "Form1";
             Load += SalaPrincipal_Load;
-            flpInventario.ResumeLayout(false);
-            flpInventario.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pbLlaveFinal).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbPuertaFinal).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbEscenario).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbEstanteria).EndInit();
             ResumeLayout(false);
@@ -155,10 +145,10 @@
         private FlowLayoutPanel flpInventario;
         private TextBox txtRespuesta;
         private Label lblPregunta;
-        private PictureBox pbLlaveFinal;
-        private PictureBox pbPuertaFinal;
         private TextBox txtLog;
         private PictureBox pbEscenario;
         private PictureBox pbEstanteria;
+        private Button button1;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

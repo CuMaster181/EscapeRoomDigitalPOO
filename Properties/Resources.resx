@@ -121,9 +121,6 @@
   <data name="Cocina" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cocina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EstanteriaAbierta" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EstanteriaAbierta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="EstanteriaCerrada" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\EstanteriaCerrada.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -147,5 +144,14 @@
   </data>
   <data name="PuertaAbierta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pixil-frame-0 (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EstanteriaAbierta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EstanteriaAbierta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sala" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sala.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Sotano" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sotano.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
