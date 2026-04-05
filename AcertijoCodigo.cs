@@ -10,15 +10,16 @@ namespace EscapeRoomDigitalPOO
     {
         private string codigoCorrecto;
 
-        public AcertijoCodigo(string pregunta, int intentos, string codigo)
-            : base(pregunta, intentos)
+        public AcertijoCodigo(string pregunta, string pista, 
+            int intentos, int puntaje, string codigo)
+            : base(pregunta, pista, intentos, puntaje)
         {
             codigoCorrecto = codigo;
         }
 
         protected override bool ValidarRespuesta(string respuesta)
         {
-            return respuesta == codigoCorrecto;
+            return respuesta.Trim() == codigoCorrecto;
         }
     }
 }

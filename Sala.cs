@@ -14,7 +14,7 @@ namespace EscapeRoomDigitalPOO
 {
     public partial class Sala : Form
     {
-        private GameManager gameManager;
+        public GameManager gameManager;
         private int estadoPuerta = 0;
         Item itemSeleccionado = null!;
         PictureBox pbSeleccionado = null!;
@@ -157,6 +157,28 @@ namespace EscapeRoomDigitalPOO
             Escenario1 escenario1 = new Escenario1(gameManager);
             escenario1.Show();
             this.Hide();
+        }
+        private void Sala_Load(object sender, EventArgs e)
+        {
+            pbSala.Image = Properties.Resources.Sala;
+            pbSala.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            pbPuerta.Parent = pbSala;
+            pbPuerta.Image = Properties.Resources.Puerta;
+            pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
+            pbPuerta.BackColor = Color.Transparent;
+            pbPuerta.Location = new Point(391, 75);
+            pbPuerta.Tag = "llave_Final";
+
+            pbLlave.Parent = pbSala;
+            pbLlave.Image = Properties.Resources.LlaveFinal;
+            pbLlave.SizeMode = PictureBoxSizeMode.Zoom;
+            pbLlave.BackColor = Color.Transparent;
+            pbLlave.Location = new Point(50, 100);
+            pbLlave.Visible = !gameManager.LlaveRecogida;
+
+            MostrarInventario();
+            AgregarLog("¡Bienvenido a la sala final!");
         }
     }
 }

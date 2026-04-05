@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 
 namespace EscapeRoomDigitalPOO
 {
-    public abstract class Acertijo
+    public abstract class Acertijo : IResoluble
     {
         public string Pregunta { get; }
+        public string Pista { get; }
         public int IntentosRestantes { get; private set; }
+        public int PuntajeBase { get; }
 
-        protected Acertijo(string pregunta, int intentos)
+        protected Acertijo(string pregunta, string pista, int intentos, int puntaje)
         {
             Pregunta = pregunta;
+            Pista = pista;
             IntentosRestantes = intentos;
+            PuntajeBase = puntaje;
         }
 
-        public bool Intentar(string respuesta)
+        public bool Resolver(string respuesta)
         {
             if (ValidarRespuesta(respuesta))
                 return true;
@@ -27,5 +31,7 @@ namespace EscapeRoomDigitalPOO
         }
 
         protected abstract bool ValidarRespuesta(string respuesta);
+
+        public bool Agotado => IntentosRestantes <= 0;
     }
 }

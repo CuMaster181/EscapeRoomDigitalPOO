@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sala));
             pbLlave = new PictureBox();
             pbPuerta = new PictureBox();
             flpInventario = new FlowLayoutPanel();
@@ -42,9 +43,10 @@
             // pbLlave
             // 
             pbLlave.Image = Properties.Resources.LlaveFinal;
-            pbLlave.Location = new Point(189, 318);
+            pbLlave.Location = new Point(165, 238);
+            pbLlave.Margin = new Padding(3, 2, 3, 2);
             pbLlave.Name = "pbLlave";
-            pbLlave.Size = new Size(60, 50);
+            pbLlave.Size = new Size(52, 38);
             pbLlave.SizeMode = PictureBoxSizeMode.Zoom;
             pbLlave.TabIndex = 0;
             pbLlave.TabStop = false;
@@ -53,9 +55,10 @@
             // pbPuerta
             // 
             pbPuerta.Image = Properties.Resources.Puerta;
-            pbPuerta.Location = new Point(358, 215);
+            pbPuerta.Location = new Point(362, 216);
+            pbPuerta.Margin = new Padding(3, 2, 3, 2);
             pbPuerta.Name = "pbPuerta";
-            pbPuerta.Size = new Size(169, 223);
+            pbPuerta.Size = new Size(148, 167);
             pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
             pbPuerta.TabIndex = 1;
             pbPuerta.TabStop = false;
@@ -63,34 +66,39 @@
             // 
             // flpInventario
             // 
-            flpInventario.Location = new Point(584, 12);
+            flpInventario.Location = new Point(592, 20);
+            flpInventario.Margin = new Padding(3, 2, 3, 2);
             flpInventario.Name = "flpInventario";
-            flpInventario.Size = new Size(204, 202);
+            flpInventario.Size = new Size(178, 152);
             flpInventario.TabIndex = 2;
             // 
             // pbSala
             // 
-            pbSala.Location = new Point(12, 12);
+            pbSala.Location = new Point(10, 9);
+            pbSala.Margin = new Padding(3, 2, 3, 2);
             pbSala.Name = "pbSala";
-            pbSala.Size = new Size(515, 426);
+            pbSala.Size = new Size(500, 374);
             pbSala.SizeMode = PictureBoxSizeMode.Zoom;
             pbSala.TabIndex = 3;
             pbSala.TabStop = false;
             // 
             // txtLog
             // 
-            txtLog.Location = new Point(605, 296);
+            txtLog.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtLog.Location = new Point(592, 220);
+            txtLog.Margin = new Padding(3, 2, 3, 2);
             txtLog.Multiline = true;
             txtLog.Name = "txtLog";
-            txtLog.Size = new Size(155, 123);
+            txtLog.Size = new Size(178, 109);
             txtLog.TabIndex = 4;
             // 
             // bttncocina
             // 
             bttncocina.BackgroundImage = Properties.Resources.Fond;
-            bttncocina.Location = new Point(22, 185);
+            bttncocina.Location = new Point(19, 139);
+            bttncocina.Margin = new Padding(3, 2, 3, 2);
             bttncocina.Name = "bttncocina";
-            bttncocina.Size = new Size(71, 29);
+            bttncocina.Size = new Size(62, 22);
             bttncocina.TabIndex = 5;
             bttncocina.Text = "Cocina";
             bttncocina.UseVisualStyleBackColor = true;
@@ -98,18 +106,22 @@
             // 
             // Sala
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.Fondo;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(782, 449);
             Controls.Add(bttncocina);
             Controls.Add(txtLog);
             Controls.Add(flpInventario);
             Controls.Add(pbPuerta);
             Controls.Add(pbLlave);
             Controls.Add(pbSala);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Sala";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Sala";
+            Load += Sala_Load;
             ((System.ComponentModel.ISupportInitialize)pbLlave).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbPuerta).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbSala).EndInit();

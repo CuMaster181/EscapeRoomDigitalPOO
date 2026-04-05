@@ -10,17 +10,17 @@ namespace EscapeRoomDigitalPOO
     {
         private int numeroCorrecto;
 
-        public AcertijoRandom(string pregunta, int intentos)
-            : base(pregunta, intentos)
+        public AcertijoRandom(string pregunta, string pista, 
+            int intentos, int puntaje, int minimo, int maximo)
+            : base(pregunta, pista, intentos, puntaje)
         {
-            Random random = new Random();
-            numeroCorrecto = random.Next(1, 6);
+            numeroCorrecto = Random.Shared.Next(minimo, maximo + 1);
         }
 
         protected override bool ValidarRespuesta(string respuesta)
         {
-            int numero;
-            return int.TryParse(respuesta, out numero) && numero == numeroCorrecto;
+            return int.TryParse(respuesta.Trim(), out int numero)
+                   && numero == numeroCorrecto;
         }
     }
 }
