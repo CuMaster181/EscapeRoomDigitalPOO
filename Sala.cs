@@ -12,7 +12,6 @@ using System.Windows.Forms;
 
 namespace EscapeRoomDigitalPOO
 {
-
     public partial class Sala : Form
     {
         private GameManager gameManager;
@@ -26,27 +25,6 @@ namespace EscapeRoomDigitalPOO
             MostrarInventario();
             AgregarLog();
 
-            pbPuerta.Image = Properties.Resources.Puerta;
-            pbLlave.Image = Properties.Resources.LlaveFinal;
-
-            pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLlave.SizeMode = PictureBoxSizeMode.Zoom;
-
-            pbPuerta.Image = Properties.Resources.Puerta;
-            pbLlave.Image = Properties.Resources.LlaveFinal;
-
-            pbPuerta.Parent = pbSala;
-            pbLlave.Parent = pbSala;
-
-            pbPuerta.BackColor = Color.Transparent;
-            pbLlave.BackColor = Color.Transparent;
-
-            pbPuerta.Location = new Point(391, 75);
-            pbLlave.Location = new Point(50, 100);
-            pbSala.Image = Properties.Resources.Sala;
-        }
-        private void Sala_Load(object sender, EventArgs e)
-        {
             pbPuerta.Tag = "llave_Final";
 
             pbPuerta.Image = Properties.Resources.Puerta;
@@ -135,7 +113,7 @@ namespace EscapeRoomDigitalPOO
                 }
 
                 PictureBox pb = sender as PictureBox;
-                string llaveNecesaria = pb!.Tag!.ToString();
+                string llaveNecesaria = pb.Tag as string;
 
                 if (itemSeleccionado.Id == llaveNecesaria)
                 {
@@ -168,7 +146,6 @@ namespace EscapeRoomDigitalPOO
                 "LlaveFinal",
                 Properties.Resources.LlaveFinal
             );
-
             gameManager.Inventario.Add(Llave);
 
             pbLlave.Visible = false;

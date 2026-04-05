@@ -12,11 +12,11 @@ namespace EscapeRoomDigitalPOO
         {
             InitializeComponent();
             gameManager = gm;
+            MostrarInventario();
         }
 
         private void SalaPrincipal_Load(object sender, EventArgs e)
         {
-            MostrarInventario();
             pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
             pbEstanteria.SizeMode = PictureBoxSizeMode.StretchImage;
             pbEscenario.SizeMode = PictureBoxSizeMode.Zoom;
