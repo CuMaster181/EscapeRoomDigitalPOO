@@ -123,6 +123,26 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap FormLibro {
+            get {
+                object obj = ResourceManager.GetObject("FormLibro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap LibroClick {
+            get {
+                object obj = ResourceManager.GetObject("LibroClick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap LlaveFinal {
             get {
                 object obj = ResourceManager.GetObject("LlaveFinal", resourceCulture);

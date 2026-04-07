@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace EscapeRoomDigitalPOO
 {
@@ -39,21 +40,21 @@ namespace EscapeRoomDigitalPOO
             // Tipo 1 — AcertijoCodigo
             // args: pregunta, pista, intentos, puntaje, código
             acertijos.Add(new AcertijoCodigo(
-                pregunta: "Ingresa el código de la caja fuerte:",
-                pista: "El código son los 4 dígitos del calendario.",
+                pregunta: "Ingresa el código escondido en la sala:",
+                pista: "Se esconde en la Estanteria",
                 intentos: 3,
                 puntaje: 30,
-                codigo: "1234"
+                codigo: "2134"
             ));
 
             // Tipo 2 — AcertijoTexto
             // args: pregunta, pista, intentos, puntaje, respuesta
             acertijos.Add(new AcertijoTexto(
-                pregunta: "¿Qué animal está pintado en la pared de la sala?",
-                pista: "Es un felino doméstico.",
+                pregunta: "¿Qué horas son? (usa ':' )",
+                pista: "deberias de checar el reloj de la Cocina",
                 intentos: 3,
                 puntaje: 20,
-                respuesta: "gato"
+                respuesta: "3:30"
             ));
 
             // Tipo 3 — AcertijoRandom
@@ -66,7 +67,8 @@ namespace EscapeRoomDigitalPOO
                 minimo: 1,
                 maximo: 5
             ));
-
+            MessageBox.Show("¡Bienvenido al Escape Room Digital! Resuelve los acertijos para ganar puntos y avanzar.",
+                "Escape Room", MessageBoxButtons.OK, MessageBoxIcon.Information);
             SiguienteAcertijo();
         }
 

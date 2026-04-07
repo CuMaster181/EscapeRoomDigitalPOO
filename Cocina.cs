@@ -2,17 +2,16 @@
 
 namespace EscapeRoomDigitalPOO
 {
-    public partial class Escenario1 : Form
+    public partial class Cocina : Form
     {
         private GameManager gameManager;
         private System.Windows.Forms.Timer timer;
         private int segundosTranscurridos = 0;
-
         private int estadoPuerta = 0;
         Item itemSeleccionado = null!;
         PictureBox pbSeleccionado = null!;
 
-        public Escenario1(GameManager gm)
+        public Cocina(GameManager gm)
         {
             InitializeComponent();
             gameManager = gm;
@@ -97,7 +96,7 @@ namespace EscapeRoomDigitalPOO
             }
         }
 
-        private void SalaPrincipal_Load(object sender, EventArgs e)
+        private void Cocina_Load(object sender, EventArgs e)
         {
             MostrarInventario();
             MostrarAcertijo();
@@ -114,19 +113,6 @@ namespace EscapeRoomDigitalPOO
             else if (gameManager.EstadoEstanteria == 2)
                 pbEstanteria.Image = Properties.Resources.EstanteriaAbierta;
         }
-        /*private void MostrarAcertijo()
-        {
-            if (gameManager.JuegoTerminado())
-            {
-                GuardarPuntaje();
-                MessageBox.Show("¡Ganaste! Puntaje: " + gameManager.Puntaje);
-                return;
-            }
-
-            lblPregunta.Text = gameManager.AcertijoActual.Pregunta;
-        }
-        */
-
         private void btnPista_Click(object sender, EventArgs e)
         {
             if (gameManager.AcertijoActual == null) return;
@@ -181,18 +167,6 @@ namespace EscapeRoomDigitalPOO
                 flpInventario.Controls.Add(pb);
             }
         }
-        /*private void GuardarPuntaje()
-        {
-            try
-            {
-                File.WriteAllText("puntaje.txt", gameManager.Puntaje.ToString());
-            }
-            catch
-            {
-                MessageBox.Show("Error al guardar");
-            }
-        }
-        */
         private void AgregarLog(string mensaje)
         {
             txtLog.AppendText(mensaje + Environment.NewLine);

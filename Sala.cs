@@ -23,31 +23,53 @@ namespace EscapeRoomDigitalPOO
             InitializeComponent();
             this.gameManager = gm;
             MostrarInventario();
-            AgregarLog();
 
             pbPuerta.Tag = "llave_Final";
 
             pbPuerta.Image = Properties.Resources.Puerta;
             pbLlave.Image = Properties.Resources.LlaveFinal;
+            pbLibro.Image = Properties.Resources.LibroClick;
 
             pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
             pbLlave.SizeMode = PictureBoxSizeMode.Zoom;
-
-            pbPuerta.Image = Properties.Resources.Puerta;
-            pbLlave.Image = Properties.Resources.LlaveFinal;
+            pbLibro.SizeMode = PictureBoxSizeMode.Zoom;
 
             pbPuerta.Parent = pbSala;
             pbLlave.Parent = pbSala;
+            pbLibro.Parent = pbSala;
 
             pbPuerta.BackColor = Color.Transparent;
             pbLlave.BackColor = Color.Transparent;
+            pbLibro.BackColor = Color.Transparent;
 
-            pbPuerta.Location = new Point(391, 75);
+            pbPuerta.Location = new Point(419, 123);
             pbLlave.Location = new Point(50, 100);
+            pbLibro.Location = new Point(137, 174);
+
             pbSala.Image = Properties.Resources.Sala;
 
             if (gameManager.LlaveRecogida)
                 pbLlave.Visible = false;
+        }
+        private void Sala_Load(object sender, EventArgs e)
+        {
+            pbSala.Image = Properties.Resources.Sala;
+            pbSala.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            pbPuerta.Parent = pbSala;
+            pbPuerta.Image = Properties.Resources.Puerta;
+            pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
+            pbPuerta.BackColor = Color.Transparent;
+            pbPuerta.Location = new Point(391, 75);
+
+            pbLlave.Parent = pbSala;
+            pbLlave.Image = Properties.Resources.LlaveFinal;
+            pbLlave.SizeMode = PictureBoxSizeMode.Zoom;
+            pbLlave.BackColor = Color.Transparent;
+            pbLlave.Visible = !gameManager.LlaveRecogida;
+
+            MostrarInventario();
+            AgregarLog("¡Bienvenido a la sala final!");
         }
         private void AgregarLog(string mensaje = "¡Bienvenido a la sala final!")
         {
@@ -154,31 +176,16 @@ namespace EscapeRoomDigitalPOO
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Escenario1 escenario1 = new Escenario1(gameManager);
+            Cocina escenario1 = new Cocina(gameManager);
             escenario1.Show();
             this.Hide();
         }
-        private void Sala_Load(object sender, EventArgs e)
+        
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            pbSala.Image = Properties.Resources.Sala;
-            pbSala.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            pbPuerta.Parent = pbSala;
-            pbPuerta.Image = Properties.Resources.Puerta;
-            pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
-            pbPuerta.BackColor = Color.Transparent;
-            pbPuerta.Location = new Point(391, 75);
-            pbPuerta.Tag = "llave_Final";
-
-            pbLlave.Parent = pbSala;
-            pbLlave.Image = Properties.Resources.LlaveFinal;
-            pbLlave.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLlave.BackColor = Color.Transparent;
-            pbLlave.Location = new Point(50, 100);
-            pbLlave.Visible = !gameManager.LlaveRecogida;
-
-            MostrarInventario();
-            AgregarLog("¡Bienvenido a la sala final!");
+            libro libro = new libro();
+            libro.Show();
         }
     }
 }
