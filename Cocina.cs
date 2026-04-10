@@ -16,6 +16,20 @@ namespace EscapeRoomDigitalPOO
             InitializeComponent();
             gameManager = gm;
             ConfigurarTimer();
+            MostrarInventario();
+            MostrarAcertijo();
+            
+
+            pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
+            pbAlfombra.Image = Properties.Resources.Alfombra;
+
+            pbEstanteria.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbAlfombra.SizeMode = PictureBoxSizeMode.Zoom;
+            pbEscenario.SizeMode = PictureBoxSizeMode.Zoom;
+
+            pbAlfombra.Parent = pbEscenario;
+            pbAlfombra.BackColor = Color.Transparent;
+            pbEscenario.Image = Properties.Resources.Cocina;
         }
 
         private void ConfigurarTimer()
@@ -26,7 +40,7 @@ namespace EscapeRoomDigitalPOO
             timer.Start();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object? sender, EventArgs e)
         {
             segundosTranscurridos++;
 
@@ -98,13 +112,7 @@ namespace EscapeRoomDigitalPOO
 
         private void Cocina_Load(object sender, EventArgs e)
         {
-            MostrarInventario();
-            MostrarAcertijo();
-
-            pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
-            pbEstanteria.SizeMode = PictureBoxSizeMode.StretchImage;
-            pbEscenario.SizeMode = PictureBoxSizeMode.Zoom;
-            pbEscenario.Image = Properties.Resources.Cocina;
+            pbAlfombra.Tag = "palanca";
 
             if (gameManager.EstadoEstanteria == 0)
                 pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
@@ -112,6 +120,13 @@ namespace EscapeRoomDigitalPOO
                 pbEstanteria.Image = Properties.Resources.EstanteriaPalanca;
             else if (gameManager.EstadoEstanteria == 2)
                 pbEstanteria.Image = Properties.Resources.EstanteriaAbierta;
+
+            if (gameManager.EstadoAlfombra == 0)
+                pbAlfombra.Image = Properties.Resources.Alfombra;
+            else if (gameManager.EstadoAlfombra == 1)
+                pbAlfombra.Image = Properties.Resources.Recogida;
+            else if (gameManager.EstadoAlfombra == 2)
+                pbAlfombra.Image = Properties.Resources.PuertaSotano;
         }
         private void btnPista_Click(object sender, EventArgs e)
         {
@@ -190,7 +205,7 @@ namespace EscapeRoomDigitalPOO
         }
         private void SeleccionarItem(object sender, EventArgs e)
         {
-            PictureBox pb = sender as PictureBox;
+            PictureBox? pb = sender as PictureBox;
 
             itemSeleccionado = pb.Tag as Item;
             pbSeleccionado = pb;
@@ -261,6 +276,46 @@ namespace EscapeRoomDigitalPOO
             Sala sala = new Sala(gameManager);
             sala.Show();
             this.Hide();
+        }
+
+        private void pbAlfombra_Click(object sender, EventArgs e)
+        {
+            if (gameManager.EstadoAlfombra == 0)
+            {
+                gameManager.EstadoAlfombra = 1;
+                pbAlfombra.Image = Properties.Resources.Recogida;
+
+                AgregarLog("Levantaste la alfombra");
+            }
+            else if (gameManager.EstadoAlfombra == 1)
+            {
+                if (itemSeleccionado == null)
+                {
+                    AgregarLog("Selecciona un objeto primero");
+                    return;
+                }
+
+                PictureBox? pb = sender as PictureBox;
+                string? PalancaNecesaria = pb.Tag as string;
+
+                if (itemSeleccionado.Id == PalancaNecesaria)
+                {
+                    gameManager.EstadoAlfombra = 2;
+                    pb.Image = Properties.Resources.PuertaSotano;
+
+                    ConsumirItem();
+                }
+                else
+                {
+                    AgregarLog("Ese objeto no sirve aquí");
+                }
+            }
+            else
+            {
+                Sotano sotano = new Sotano(gameManager);
+                sotano.Show();
+                this.Hide();
+            }
         }
     }
 }

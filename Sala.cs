@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace EscapeRoomDigitalPOO
@@ -16,13 +7,22 @@ namespace EscapeRoomDigitalPOO
     {
         public GameManager gameManager;
         private int estadoPuerta = 0;
+
+        // Timer propio de la Sala (el tiempo sigue corriendo)
+        private System.Windows.Forms.Timer timer;
+        private int segundosTranscurridos = 0;
+
         Item itemSeleccionado = null!;
         PictureBox pbSeleccionado = null!;
+
         public Sala(GameManager gm)
         {
             InitializeComponent();
-            this.gameManager = gm;
+            gameManager = gm;
+
+            ConfigurarTimer();
             MostrarInventario();
+            ActualizarHUD();
 
             pbPuerta.Tag = "llave_Final";
 
@@ -42,15 +42,40 @@ namespace EscapeRoomDigitalPOO
             pbLlave.BackColor = Color.Transparent;
             pbLibro.BackColor = Color.Transparent;
 
-            pbPuerta.Location = new Point(419, 123);
-            pbLlave.Location = new Point(50, 100);
-            pbLibro.Location = new Point(137, 174);
-
             pbSala.Image = Properties.Resources.Sala;
 
             if (gameManager.LlaveRecogida)
                 pbLlave.Visible = false;
         }
+
+        // ── Timer ──────────────────────────────────────────────────
+        private void ConfigurarTimer()
+        {
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object? sender, EventArgs e)
+        {
+            segundosTranscurridos++;
+
+            if (segundosTranscurridos % 10 == 0)
+                gameManager.PenalizarPorTiempo();
+
+            ActualizarHUD();
+        }
+
+        private void ActualizarHUD()
+        {
+            lblTiempo.Text = $"Tiempo: {segundosTranscurridos}s";
+            lblPuntaje.Text = $"Puntaje: {gameManager.Puntaje}";
+            // En la Sala no hay acertijo activo, mostramos 0
+            lblIntentos.Text = $"Intentos: {gameManager.AcertijoActual?.IntentosRestantes ?? 0}";
+        }
+
+        // ── Load ───────────────────────────────────────────────────
         private void Sala_Load(object sender, EventArgs e)
         {
             pbSala.Image = Properties.Resources.Sala;
@@ -71,60 +96,54 @@ namespace EscapeRoomDigitalPOO
             MostrarInventario();
             AgregarLog("¡Bienvenido a la sala final!");
         }
-        private void AgregarLog(string mensaje = "¡Bienvenido a la sala final!")
+
+        // ── Log ────────────────────────────────────────────────────
+        private void AgregarLog(string mensaje = "")
         {
             txtLog.AppendText(mensaje + Environment.NewLine);
         }
+
+        // ── Inventario ─────────────────────────────────────────────
         private void MostrarInventario()
         {
             flpInventario.Controls.Clear();
 
             foreach (var item in gameManager.Inventario)
             {
-                PictureBox pb = new PictureBox();
-                pb.Width = 50;
-                pb.Height = 50;
-                pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.Image = item.Imagen;
-                pb.Tag = item;
+                PictureBox pb = new PictureBox
+                {
+                    Width = 50,
+                    Height = 50,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Image = item.Imagen,
+                    Tag = item
+                };
 
                 pb.Click += (s, e) =>
                 {
                     itemSeleccionado = (Item)pb.Tag;
-                    pbSeleccionado = (PictureBox)s;
-
+                    pbSeleccionado = (PictureBox)s!;
                     AgregarLog("Seleccionaste: " + itemSeleccionado.Nombre);
                 };
 
                 flpInventario.Controls.Add(pb);
             }
         }
-        private void SeleccionarItem()
-        {
-            foreach (Control ctrl in flpInventario.Controls)
-            {
-                if (ctrl is PictureBox pb)
-                {
-                    pb.Click += (s, e) =>
-                    {
-                        itemSeleccionado = pb.Tag as Item;
-                        AgregarLog("Seleccionaste: " + itemSeleccionado?.Nombre);
-                    };
-                }
-            }
-        }
+
         private void ConsumirItem()
         {
             if (itemSeleccionado != null)
             {
                 gameManager.Inventario.Remove(itemSeleccionado);
                 MostrarInventario();
-                itemSeleccionado = null;
+                itemSeleccionado = null!;
+                pbSeleccionado = null!;
                 AgregarLog("Consumiste el objeto");
             }
         }
 
-        private void PuertaFinall_Click(object sender, EventArgs e)
+        // ── Puerta final ───────────────────────────────────────────
+        private void PuertaFinal_Click(object sender, EventArgs e)
         {
             if (estadoPuerta == 0)
             {
@@ -134,58 +153,75 @@ namespace EscapeRoomDigitalPOO
                     return;
                 }
 
-                PictureBox pb = sender as PictureBox;
-                string llaveNecesaria = pb.Tag as string;
+                PictureBox pb = (PictureBox)sender;
+                string llaveNecesaria = pb.Tag as string ?? "";
 
                 if (itemSeleccionado.Id == llaveNecesaria)
                 {
                     estadoPuerta = 1;
-                    AgregarLog("Abriste el candado");
-
                     pb.Image = Properties.Resources.PuertaAbierta;
-
+                    AgregarLog("¡Abriste la puerta!");
                     ConsumirItem();
-
                 }
                 else
                 {
-                    AgregarLog("Ese objeto no sirve aquí ?");
+                    AgregarLog("Ese objeto no sirve aquí");
                 }
             }
             else
             {
-                MessageBox.Show("¡Has escapado!");
-                this.Close();
+                // Puerta ya abierta — fin del juego
+                timer.Stop();
+                gameManager.GuardarResultado(segundosTranscurridos);
+
+                MessageBox.Show(
+                    $"¡Has escapado!\n\n" +
+                    $"Puntaje final: {gameManager.Puntaje} pts\n" +
+                    $"Tiempo: {segundosTranscurridos}s\n\n" +
+                    "Resultado guardado en Resultados.txt",
+                    "¡Victoria!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Asterisk);
+
+                Application.Exit();
             }
         }
 
+        // ── Llave en suelo ─────────────────────────────────────────
         private void pbLlave_Click(object sender, EventArgs e)
         {
             gameManager.LlaveRecogida = true;
 
-            Item Llave = new Item(
+            gameManager.Inventario.Add(new Item(
                 "llave_Final",
-                "LlaveFinal",
-                Properties.Resources.LlaveFinal
-            );
-            gameManager.Inventario.Add(Llave);
+                "Llave Final",
+                Properties.Resources.LlaveFinal));
 
             pbLlave.Visible = false;
             MostrarInventario();
+            AgregarLog("Recogiste la Llave Final");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // ── Navegación ─────────────────────────────────────────────
+        private void btnCocina(object sender, EventArgs e)
         {
-            Cocina escenario1 = new Cocina(gameManager);
-            escenario1.Show();
+            Cocina cocina = new Cocina(gameManager);
+            cocina.Show();
             this.Hide();
         }
-        
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void btnSotano_Click(object sender, EventArgs e)
+        {
+            Sotano sotano = new Sotano(gameManager);
+            sotano.Show();
+            this.Hide();
+        }
+
+        // ── Libro ──────────────────────────────────────────────────
+        private void pbLibro_Click(object sender, EventArgs e)
         {
             libro libro = new libro();
-            libro.Show();
+            libro.ShowDialog(this);   // modal para que no pierdan el foco
         }
     }
 }

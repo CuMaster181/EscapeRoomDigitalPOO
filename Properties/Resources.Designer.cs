@@ -63,6 +63,16 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Alfombra {
+            get {
+                object obj = ResourceManager.GetObject("Alfombra", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Cocina {
             get {
                 object obj = ResourceManager.GetObject("Cocina", resourceCulture);
@@ -176,6 +186,26 @@ namespace EscapeRoomDigitalPOO.Properties {
         public static System.Drawing.Bitmap PuertaAbierta {
             get {
                 object obj = ResourceManager.GetObject("PuertaAbierta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap PuertaSotano {
+            get {
+                object obj = ResourceManager.GetObject("PuertaSotano", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Recogida {
+            get {
+                object obj = ResourceManager.GetObject("Recogida", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

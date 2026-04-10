@@ -160,4 +160,13 @@
   <data name="FormLibro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FormLibro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Alfombra" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Alfombra.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Recogida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Recogida.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PuertaSotano" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PuertaSotano.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

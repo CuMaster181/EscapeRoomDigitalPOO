@@ -2,30 +2,17 @@
 {
     partial class Sala
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Sala));
@@ -35,7 +22,11 @@
             pbSala = new PictureBox();
             txtLog = new TextBox();
             bttncocina = new Button();
+            bttnSotano = new Button();
             pbLibro = new PictureBox();
+            lblPuntaje = new Label();
+            lblIntentos = new Label();
+            lblTiempo = new Label();
             ((System.ComponentModel.ISupportInitialize)pbLlave).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbPuerta).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbSala).BeginInit();
@@ -64,20 +55,21 @@
             pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
             pbPuerta.TabIndex = 1;
             pbPuerta.TabStop = false;
-            pbPuerta.Click += PuertaFinall_Click;
+            pbPuerta.Click += PuertaFinal_Click;
             // 
             // flpInventario
             // 
-            flpInventario.Location = new Point(677, 27);
+            flpInventario.BackColor = Color.Transparent;
+            flpInventario.Location = new Point(677, 45);
             flpInventario.Name = "flpInventario";
-            flpInventario.Size = new Size(203, 203);
+            flpInventario.Size = new Size(203, 200);
             flpInventario.TabIndex = 2;
             // 
             // pbSala
             // 
             pbSala.BackColor = Color.Transparent;
             pbSala.Image = Properties.Resources.Sala;
-            pbSala.Location = new Point(58, 59);
+            pbSala.Location = new Point(58, 45);
             pbSala.Name = "pbSala";
             pbSala.Size = new Size(515, 427);
             pbSala.SizeMode = PictureBoxSizeMode.Zoom;
@@ -86,23 +78,36 @@
             // 
             // txtLog
             // 
-            txtLog.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtLog.Location = new Point(677, 293);
+            txtLog.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            txtLog.Location = new Point(677, 260);
             txtLog.Multiline = true;
             txtLog.Name = "txtLog";
-            txtLog.Size = new Size(203, 144);
+            txtLog.ReadOnly = true;
+            txtLog.ScrollBars = ScrollBars.Vertical;
+            txtLog.Size = new Size(220, 130);
             txtLog.TabIndex = 4;
             // 
             // bttncocina
             // 
             bttncocina.BackgroundImage = Properties.Resources.Fond;
-            bttncocina.Location = new Point(76, 301);
+            bttncocina.Location = new Point(677, 405);
             bttncocina.Name = "bttncocina";
-            bttncocina.Size = new Size(71, 29);
+            bttncocina.Size = new Size(100, 32);
             bttncocina.TabIndex = 5;
             bttncocina.Text = "Cocina";
             bttncocina.UseVisualStyleBackColor = true;
-            bttncocina.Click += button1_Click;
+            bttncocina.Click += btnCocina;
+            // 
+            // bttnSotano
+            // 
+            bttnSotano.BackgroundImage = Properties.Resources.Fond;
+            bttnSotano.Location = new Point(790, 405);
+            bttnSotano.Name = "bttnSotano";
+            bttnSotano.Size = new Size(100, 32);
+            bttnSotano.TabIndex = 6;
+            bttnSotano.Text = "Sótano";
+            bttnSotano.UseVisualStyleBackColor = true;
+            bttnSotano.Click += btnSotano_Click;
             // 
             // pbLibro
             // 
@@ -112,17 +117,57 @@
             pbLibro.Location = new Point(137, 174);
             pbLibro.Name = "pbLibro";
             pbLibro.Size = new Size(29, 46);
-            pbLibro.TabIndex = 6;
+            pbLibro.TabIndex = 7;
             pbLibro.TabStop = false;
-            pbLibro.Click += pictureBox1_Click;
+            pbLibro.Click += pbLibro_Click;
+            // 
+            // lblPuntaje
+            // 
+            lblPuntaje.AutoSize = true;
+            lblPuntaje.BackColor = Color.Transparent;
+            lblPuntaje.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            lblPuntaje.ForeColor = SystemColors.Control;
+            lblPuntaje.Location = new Point(12, 12);
+            lblPuntaje.Name = "lblPuntaje";
+            lblPuntaje.Size = new Size(84, 18);
+            lblPuntaje.TabIndex = 0;
+            lblPuntaje.Text = "Puntaje: 0";
+            // 
+            // lblIntentos
+            // 
+            lblIntentos.AutoSize = true;
+            lblIntentos.BackColor = Color.Transparent;
+            lblIntentos.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            lblIntentos.ForeColor = SystemColors.Control;
+            lblIntentos.Location = new Point(140, 12);
+            lblIntentos.Name = "lblIntentos";
+            lblIntentos.Size = new Size(94, 18);
+            lblIntentos.TabIndex = 1;
+            lblIntentos.Text = "Intentos: —";
+            // 
+            // lblTiempo
+            // 
+            lblTiempo.AutoSize = true;
+            lblTiempo.BackColor = Color.Transparent;
+            lblTiempo.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            lblTiempo.ForeColor = SystemColors.Control;
+            lblTiempo.Location = new Point(270, 12);
+            lblTiempo.Name = "lblTiempo";
+            lblTiempo.Size = new Size(89, 18);
+            lblTiempo.TabIndex = 2;
+            lblTiempo.Text = "Tiempo: 0s";
             // 
             // Sala
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.Fondo;
+            BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(939, 633);
+            Controls.Add(lblPuntaje);
+            Controls.Add(lblIntentos);
+            Controls.Add(lblTiempo);
             Controls.Add(pbLibro);
+            Controls.Add(bttnSotano);
             Controls.Add(bttncocina);
             Controls.Add(txtLog);
             Controls.Add(flpInventario);
@@ -150,6 +195,10 @@
         private PictureBox pbSala;
         private TextBox txtLog;
         private Button bttncocina;
+        private Button bttnSotano;
         private PictureBox pbLibro;
+        private Label lblPuntaje;
+        private Label lblIntentos;
+        private Label lblTiempo;
     }
 }

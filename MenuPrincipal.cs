@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace EscapeRoomDigitalPOO
@@ -15,20 +10,43 @@ namespace EscapeRoomDigitalPOO
         public MenuPrincipal()
         {
             InitializeComponent();
+            VerificarPartidaGuardada();
         }
 
+        // 🔍 Verifica si existe archivo de guardado
+        private void VerificarPartidaGuardada()
+        {
+            string ruta = "resultados.txt";
+
+            BttnCargarPartida.Enabled = File.Exists(ruta);
+        }
+
+        // 🔄 Se ejecuta cada vez que vuelves al menú
+        protected override void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+            VerificarPartidaGuardada();
+        }
+
+        // ▶️ Nueva partida
         private void bttnInicio_Click(object sender, EventArgs e)
         {
-            // Inicia una nueva partida: crea un GameManager y abre Escenario1
             GameManager gm = new GameManager();
             Cocina escenario = new Cocina(gm);
             escenario.Show();
             this.Hide();
         }
 
+        // 📂 Cargar partida (mostrar historial)
         private void BttnCargarPartida_Click(object sender, EventArgs e)
         {
-            // Muestra el historial de partidas guardadas (Resultados.txt)
+            if (!File.Exists("resultados.txt"))
+            {
+                MessageBox.Show("No hay partidas guardadas.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             GameManager gm = new GameManager();
             string historial = gm.LeerHistorial();
 
