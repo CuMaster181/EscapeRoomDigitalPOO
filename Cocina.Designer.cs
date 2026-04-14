@@ -24,19 +24,17 @@
             lblIntentos = new Label();
             lblTiempo = new Label();
             flpInventario = new FlowLayoutPanel();
-            lblPregunta = new Label();
-            txtRespuesta = new TextBox();
-            btnValidar = new Button();
-            btnPista = new Button();
             txtLog = new TextBox();
             button1 = new Button();
             pbEscenario = new PictureBox();
             pbAlfombra = new PictureBox();
+            pbCajon = new PictureBox();
             pbEstanteria = new PictureBox();
             contextMenuStrip1 = new ContextMenuStrip(components);
             ((System.ComponentModel.ISupportInitialize)pbEscenario).BeginInit();
             pbEscenario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbAlfombra).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCajon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbEstanteria).BeginInit();
             SuspendLayout();
             // 
@@ -81,64 +79,18 @@
             flpInventario.BackColor = Color.Transparent;
             flpInventario.Location = new Point(677, 45);
             flpInventario.Name = "flpInventario";
-            flpInventario.Size = new Size(240, 180);
+            flpInventario.Size = new Size(203, 200);
             flpInventario.TabIndex = 0;
-            // 
-            // lblPregunta
-            // 
-            lblPregunta.AutoSize = true;
-            lblPregunta.BackColor = Color.Transparent;
-            lblPregunta.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPregunta.ForeColor = SystemColors.ButtonHighlight;
-            lblPregunta.Location = new Point(677, 240);
-            lblPregunta.MaximumSize = new Size(240, 0);
-            lblPregunta.Name = "lblPregunta";
-            lblPregunta.Size = new Size(23, 18);
-            lblPregunta.TabIndex = 2;
-            lblPregunta.Text = "...";
-            // 
-            // txtRespuesta
-            // 
-            txtRespuesta.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtRespuesta.Location = new Point(677, 300);
-            txtRespuesta.Multiline = true;
-            txtRespuesta.Name = "txtRespuesta";
-            txtRespuesta.Size = new Size(240, 27);
-            txtRespuesta.TabIndex = 1;
-            // 
-            // btnValidar
-            // 
-            btnValidar.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnValidar.Location = new Point(677, 340);
-            btnValidar.Margin = new Padding(3, 4, 3, 4);
-            btnValidar.Name = "btnValidar";
-            btnValidar.Size = new Size(112, 37);
-            btnValidar.TabIndex = 12;
-            btnValidar.Text = "Validar";
-            btnValidar.UseVisualStyleBackColor = true;
-            btnValidar.Click += btnValidar_Click;
-            // 
-            // btnPista
-            // 
-            btnPista.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPista.Location = new Point(805, 340);
-            btnPista.Margin = new Padding(3, 4, 3, 4);
-            btnPista.Name = "btnPista";
-            btnPista.Size = new Size(112, 37);
-            btnPista.TabIndex = 13;
-            btnPista.Text = "Pista";
-            btnPista.UseVisualStyleBackColor = true;
-            btnPista.Click += btnPista_Click;
             // 
             // txtLog
             // 
             txtLog.Font = new Font("Tahoma", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtLog.Location = new Point(677, 390);
+            txtLog.Location = new Point(677, 260);
             txtLog.Multiline = true;
             txtLog.Name = "txtLog";
             txtLog.ReadOnly = true;
             txtLog.ScrollBars = ScrollBars.Vertical;
-            txtLog.Size = new Size(240, 110);
+            txtLog.Size = new Size(220, 130);
             txtLog.TabIndex = 5;
             // 
             // button1
@@ -180,13 +132,27 @@
             pbAlfombra.TabStop = false;
             pbAlfombra.Click += pbAlfombra_Click;
             // 
+            // pbCajon
+            // 
+            pbCajon.BackColor = Color.Transparent;
+            pbCajon.Cursor = Cursors.Hand;
+            pbCajon.Image = Properties.Resources.CajonCerrado;
+            pbCajon.Location = new Point(281, 349);
+            pbCajon.Name = "pbCajon";
+            pbCajon.Size = new Size(78, 59);
+            pbCajon.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbCajon.TabIndex = 12;
+            pbCajon.TabStop = false;
+            pbCajon.Click += pbCajon_Click;
+            // 
             // pbEstanteria
             // 
             pbEstanteria.BackColor = Color.Transparent;
+            pbEstanteria.Cursor = Cursors.Hand;
             pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
-            pbEstanteria.Location = new Point(95, 45);
+            pbEstanteria.Location = new Point(131, 45);
             pbEstanteria.Name = "pbEstanteria";
-            pbEstanteria.Size = new Size(146, 93);
+            pbEstanteria.Size = new Size(146, 94);
             pbEstanteria.SizeMode = PictureBoxSizeMode.StretchImage;
             pbEstanteria.TabIndex = 7;
             pbEstanteria.TabStop = false;
@@ -204,16 +170,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(939, 633);
-            Controls.Add(pbEscenario);
+            Controls.Add(pbCajon);
             Controls.Add(pbEstanteria);
+            Controls.Add(pbEscenario);
             Controls.Add(lblPuntaje);
             Controls.Add(lblIntentos);
             Controls.Add(lblTiempo);
             Controls.Add(flpInventario);
-            Controls.Add(lblPregunta);
-            Controls.Add(txtRespuesta);
-            Controls.Add(btnValidar);
-            Controls.Add(btnPista);
             Controls.Add(txtLog);
             Controls.Add(button1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -224,6 +187,7 @@
             ((System.ComponentModel.ISupportInitialize)pbEscenario).EndInit();
             pbEscenario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbAlfombra).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCajon).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbEstanteria).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -236,15 +200,12 @@
         private Label lblIntentos;
         private Label lblTiempo;
         private FlowLayoutPanel flpInventario;
-        private Label lblPregunta;
-        private TextBox txtRespuesta;
-        private Button btnValidar;
-        private Button btnPista;
         private TextBox txtLog;
         private Button button1;
         private PictureBox pbEscenario;
         private PictureBox pbEstanteria;
         private PictureBox pbAlfombra;
         private ContextMenuStrip contextMenuStrip1;
+        private PictureBox pbCajon;
     }
 }

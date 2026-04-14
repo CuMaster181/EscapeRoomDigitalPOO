@@ -10,7 +10,6 @@ namespace EscapeRoomDigitalPOO
     public class GameManager
     {
         // ── Colecciones ────────────────────────────────────────────
-        private List<Acertijo> acertijosCocina;   // acertijos de la Cocina
         private List<Acertijo> acertijosSotano;   // acertijos del Sótano
         private List<Item> inventario;
 
@@ -20,7 +19,9 @@ namespace EscapeRoomDigitalPOO
         public bool LlaveRecogida { get; set; }
         public int EstadoEstanteria { get; set; }
         public int EstadoAlfombra { get; set; }
-
+        public int EstadoCajon { get; set; }
+        public int EstadoCajaFuerte { get; set; }
+        public int EstadoPC { get; set; }
         // Cuántos acertijos del sótano se han resuelto correctamente
         public int AciertosSotano { get; private set; }
 
@@ -38,7 +39,6 @@ namespace EscapeRoomDigitalPOO
         // ── Constructor ────────────────────────────────────────────
         public GameManager()
         {
-            acertijosCocina = new List<Acertijo>();
             acertijosSotano = new List<Acertijo>();
             inventario = new List<Item>();
             InicializarJuego();
@@ -47,91 +47,45 @@ namespace EscapeRoomDigitalPOO
         // ──────────────────────────────────────────────────────────
         private void InicializarJuego()
         {
-            // ── ACERTIJOS DE LA COCINA ─────────────────────────────
-
-            // Tipo 1 — AcertijoCodigo
-            acertijosCocina.Add(new AcertijoCodigo(
-                pregunta: "Ingresa el código escondido en la sala:",
-                pista: "Se esconde en la Estantería",
-                intentos: 3,
-                puntaje: 30,
-                codigo: "2134"
-            ));
-
-            // Tipo 2 — AcertijoTexto
-            acertijosCocina.Add(new AcertijoTexto(
-                pregunta: "¿Qué horas son? (usa ':' )",
-                pista: "Deberías checar el reloj de la Cocina",
-                intentos: 3,
-                puntaje: 20,
-                respuesta: "3:30"
-            ));
-
-            // Tipo 3 — AcertijoRandom
-            acertijosCocina.Add(new AcertijoRandom(
-                pregunta: "Adivina el número secreto entre 1 y 5:",
-                pista: "Es un número impar.",
-                intentos: 4,
-                puntaje: 20,
-                minimo: 1,
-                maximo: 5
-            ));
-
-            // ── ACERTIJOS DEL SÓTANO ───────────────────────────────
-
             // Acertijo S1 — Texto
             acertijosSotano.Add(new AcertijoTexto(
-                pregunta: "¿Qué animal no hace ningún ruido? (una palabra)",
-                pista: "Piensa en un animal de granja silencioso...",
+                pregunta: "que animal Tiene el dueño de la Casa?",
+                pista: "quiza dice en su comida",
                 intentos: 3,
                 puntaje: 25,
-                respuesta: "pez"
+                respuesta: "leon"
             ));
 
             // Acertijo S2 — Código numérico
             acertijosSotano.Add(new AcertijoCodigo(
-                pregunta: "El año en que se fundó el edificio está grabado en la pared. Ingrésalo:",
-                pista: "Busca en la pared del fondo del sótano",
+                pregunta: "desifra en codigo del sotano",
+                pista: "puede que la sala tenga la respuesta",
                 intentos: 3,
                 puntaje: 25,
-                codigo: "1987"
+                codigo: "7426"
             ));
 
             // Acertijo S3 — Random
             acertijosSotano.Add(new AcertijoRandom(
-                pregunta: "Adivina el número de la cerradura (entre 1 y 10):",
-                pista: "Es un número par menor que 6.",
+                pregunta: "encuentra el numero del 1 al 10",
+                pista: "",
                 intentos: 5,
                 puntaje: 25,
                 minimo: 1,
                 maximo: 10
             ));
 
-            MessageBox.Show(
-                "¡Bienvenido al Escape Room Digital!\n" +
-                "Resuelve los acertijos para ganar puntos y avanzar.",
-                "Escape Room", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Carga el primer acertijo de cocina
-            SiguienteAcertijo();
+            // Acertijo S4 - Codigo
+            acertijosSotano.Add(new AcertijoCodigo(
+                pregunta: "encuentra el Codigo de la casa",
+                pista: "Al dueño le gusta un libro rojo",
+                intentos: 3,
+                puntaje: 25,
+                codigo: "2134"
+            ));
         }
 
         // ── Manejo de acertijos ────────────────────────────────────
-
-        /// <summary>
-        /// Saca el siguiente acertijo de la lista de COCINA.
-        /// Cuando no quedan más, AcertijoActual queda en null.
-        /// </summary>
-        public void SiguienteAcertijo()
-        {
-            if (acertijosCocina.Count == 0)
-            {
-                AcertijoActual = null;
-                return;
-            }
-            AcertijoActual = acertijosCocina[0];
-            acertijosCocina.RemoveAt(0);
-        }
 
         /// <summary>
         /// Saca el siguiente acertijo de la lista de SÓTANO.

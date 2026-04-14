@@ -17,19 +17,6 @@ namespace EscapeRoomDigitalPOO
             gameManager = gm;
             ConfigurarTimer();
             MostrarInventario();
-            MostrarAcertijo();
-            
-
-            pbEstanteria.Image = Properties.Resources.EstanteriaCerrada;
-            pbAlfombra.Image = Properties.Resources.Alfombra;
-
-            pbEstanteria.SizeMode = PictureBoxSizeMode.StretchImage;
-            pbAlfombra.SizeMode = PictureBoxSizeMode.Zoom;
-            pbEscenario.SizeMode = PictureBoxSizeMode.Zoom;
-
-            pbAlfombra.Parent = pbEscenario;
-            pbAlfombra.BackColor = Color.Transparent;
-            pbEscenario.Image = Properties.Resources.Cocina;
         }
 
         private void ConfigurarTimer()
@@ -54,62 +41,6 @@ namespace EscapeRoomDigitalPOO
             lblIntentos.Text = $"Intentos: {gameManager.AcertijoActual?.IntentosRestantes ?? 0}";
         }
 
-        private void MostrarAcertijo()
-        {
-            if (gameManager.JuegoTerminado())
-            {
-                TerminarJuego();
-                return;
-            }
-
-            lblPregunta.Text = gameManager.AcertijoActual.Pregunta;
-            lblIntentos.Text = $"Intentos: {gameManager.AcertijoActual.IntentosRestantes}";
-            txtRespuesta.Clear();
-            txtRespuesta.Focus();
-        }
-
-        private void btnValidar_Click(object sender, EventArgs e)
-        {
-            // try-catch en el parseo del input del usuario
-            try
-            {
-                string respuesta = txtRespuesta.Text;
-
-                if (string.IsNullOrWhiteSpace(respuesta))
-                    throw new ArgumentException("Escribe una respuesta antes de validar.");
-
-                bool correcto = gameManager.ResolverAcertijo(respuesta);
-
-                if (correcto)
-                {
-                    MessageBox.Show("¡Correcto! Avanzas al siguiente acertijo.",
-                        "Bien hecho", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MostrarAcertijo();
-                }
-                else if (gameManager.AcertijoActual != null &&
-                         gameManager.AcertijoActual.Agotado)
-                {
-                    MessageBox.Show("Sin intentos. Pasas al siguiente acertijo sin puntos.",
-                        "Fallaste", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    gameManager.SiguienteAcertijo();
-                    MostrarAcertijo();
-                }
-                else
-                {
-                    int restantes = gameManager.AcertijoActual?.IntentosRestantes ?? 0;
-                    lblIntentos.Text = $"Intentos: {restantes}";
-                    MessageBox.Show("Respuesta incorrecta. Intenta de nuevo.",
-                        "Incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                // Input vacío u otro error de argumento
-                MessageBox.Show(ex.Message, "Atención",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void Cocina_Load(object sender, EventArgs e)
         {
             pbAlfombra.Tag = "palanca";
@@ -127,6 +58,13 @@ namespace EscapeRoomDigitalPOO
                 pbAlfombra.Image = Properties.Resources.Recogida;
             else if (gameManager.EstadoAlfombra == 2)
                 pbAlfombra.Image = Properties.Resources.PuertaSotano;
+
+            if (gameManager.EstadoCajon == 0)
+                pbCajon.Image = Properties.Resources.CajonCerrado;
+            else if (gameManager.EstadoCajon == 1)
+                pbCajon.Image = Properties.Resources.CajonUSB;
+            else if (gameManager.EstadoCajon == 2)
+                pbCajon.Image = Properties.Resources.CajonVacio;
         }
         private void btnPista_Click(object sender, EventArgs e)
         {
@@ -173,12 +111,6 @@ namespace EscapeRoomDigitalPOO
                 pb.Image = item.Imagen;
                 pb.Tag = item;
 
-                pb.Click += (s, e) =>
-                {
-                    MessageBox.Show("Seleccionaste: " + item.Nombre);
-                };
-
-
                 flpInventario.Controls.Add(pb);
             }
         }
@@ -193,7 +125,7 @@ namespace EscapeRoomDigitalPOO
             PictureBox pb = new PictureBox();
             pb.Width = 50;
             pb.Height = 50;
-            pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            pb.SizeMode = PictureBoxSizeMode.Zoom;
             pb.Image = item.Imagen;
             pb.Tag = item;
 
@@ -270,6 +202,31 @@ namespace EscapeRoomDigitalPOO
             {
                 AgregarLog("La estantería está vacía");
             }
+        }
+        private void pbCajon_Click(object sender, EventArgs e)
+        {
+            if (gameManager.EstadoCajon == 0)
+            {
+                gameManager.EstadoCajon = 1;
+                pbCajon.Image = Properties.Resources.CajonUSB;
+                
+            }
+            else if (gameManager.EstadoCajon == 1)
+            {
+                gameManager.EstadoCajon = 2;
+                Item usb = new Item(
+                    "USB",
+                    "Usb",
+                    Properties.Resources.Usb
+                );
+                AgregarItem(usb);
+                AgregarLog("Encontraste una USB ");
+                pbCajon.Image = Properties.Resources.CajonVacio;
+            }
+            else
+            {
+                AgregarLog("El cajón está vacío");
+            }   
         }
         private void button1_Click(object sender, EventArgs e)
         {

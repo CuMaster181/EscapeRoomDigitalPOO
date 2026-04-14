@@ -22,11 +22,13 @@
             txtRespuesta = new TextBox();
             btnValidar = new Button();
             btnPista = new Button();
-            btnCajaFuerte = new Button();
-            btnSala = new Button();
+            btnCocina = new Button();
             flpInventario = new FlowLayoutPanel();
             pbSotano = new PictureBox();
+            pbCajaFuerte = new PictureBox();
+            txtLog = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pbSotano).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCajaFuerte).BeginInit();
             SuspendLayout();
             // 
             // lblPuntaje
@@ -71,7 +73,7 @@
             lblPregunta.BackColor = Color.Transparent;
             lblPregunta.Font = new Font("Tahoma", 9F, FontStyle.Bold);
             lblPregunta.ForeColor = Color.White;
-            lblPregunta.Location = new Point(620, 50);
+            lblPregunta.Location = new Point(58, 482);
             lblPregunta.MaximumSize = new Size(280, 0);
             lblPregunta.Name = "lblPregunta";
             lblPregunta.Size = new Size(23, 18);
@@ -81,7 +83,7 @@
             // txtRespuesta
             // 
             txtRespuesta.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            txtRespuesta.Location = new Point(620, 130);
+            txtRespuesta.Location = new Point(58, 533);
             txtRespuesta.Name = "txtRespuesta";
             txtRespuesta.Size = new Size(220, 26);
             txtRespuesta.TabIndex = 4;
@@ -89,7 +91,7 @@
             // btnValidar
             // 
             btnValidar.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            btnValidar.Location = new Point(620, 170);
+            btnValidar.Location = new Point(58, 573);
             btnValidar.Name = "btnValidar";
             btnValidar.Size = new Size(100, 35);
             btnValidar.TabIndex = 5;
@@ -99,47 +101,35 @@
             // btnPista
             // 
             btnPista.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            btnPista.Location = new Point(740, 170);
+            btnPista.Location = new Point(178, 573);
             btnPista.Name = "btnPista";
             btnPista.Size = new Size(100, 35);
             btnPista.TabIndex = 6;
             btnPista.Text = "Pista";
             btnPista.Click += btnPista_Click;
             // 
-            // btnCajaFuerte
+            // btnCocina
             // 
-            btnCajaFuerte.BackColor = Color.DarkGoldenrod;
-            btnCajaFuerte.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            btnCajaFuerte.ForeColor = Color.White;
-            btnCajaFuerte.Location = new Point(620, 220);
-            btnCajaFuerte.Name = "btnCajaFuerte";
-            btnCajaFuerte.Size = new Size(220, 40);
-            btnCajaFuerte.TabIndex = 7;
-            btnCajaFuerte.Text = "🔐 Abrir Caja Fuerte";
-            btnCajaFuerte.UseVisualStyleBackColor = false;
-            btnCajaFuerte.Click += btnCajaFuerte_Click;
-            // 
-            // btnSala
-            // 
-            btnSala.Font = new Font("Tahoma", 9F, FontStyle.Bold);
-            btnSala.Location = new Point(620, 275);
-            btnSala.Name = "btnSala";
-            btnSala.Size = new Size(100, 30);
-            btnSala.TabIndex = 8;
-            btnSala.Text = "Ir a Sala";
-            btnSala.Click += btnSala_Click;
+            btnCocina.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            btnCocina.Location = new Point(593, 561);
+            btnCocina.Name = "btnCocina";
+            btnCocina.Size = new Size(125, 30);
+            btnCocina.TabIndex = 8;
+            btnCocina.Text = "Subir a Cocina";
+            btnCocina.Click += btnCocina_Click;
             // 
             // flpInventario
             // 
             flpInventario.BackColor = Color.Transparent;
-            flpInventario.Location = new Point(620, 320);
+            flpInventario.Location = new Point(677, 45);
             flpInventario.Name = "flpInventario";
-            flpInventario.Size = new Size(280, 180);
+            flpInventario.Size = new Size(203, 200);
             flpInventario.TabIndex = 9;
             // 
             // pbSotano
             // 
             pbSotano.BackColor = Color.Black;
+            pbSotano.Image = Properties.Resources.Sotano;
             pbSotano.Location = new Point(58, 45);
             pbSotano.Name = "pbSotano";
             pbSotano.Size = new Size(515, 427);
@@ -147,12 +137,38 @@
             pbSotano.TabIndex = 10;
             pbSotano.TabStop = false;
             // 
+            // pbCajaFuerte
+            // 
+            pbCajaFuerte.BackColor = Color.Transparent;
+            pbCajaFuerte.Cursor = Cursors.Hand;
+            pbCajaFuerte.Image = Properties.Resources.CajaFuerte;
+            pbCajaFuerte.Location = new Point(412, 275);
+            pbCajaFuerte.Name = "pbCajaFuerte";
+            pbCajaFuerte.Size = new Size(150, 108);
+            pbCajaFuerte.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCajaFuerte.TabIndex = 11;
+            pbCajaFuerte.TabStop = false;
+            pbCajaFuerte.Click += pbCajaFuerte_Click;
+            // 
+            // txtLog
+            // 
+            txtLog.Font = new Font("Tahoma", 9F, FontStyle.Bold);
+            txtLog.Location = new Point(677, 260);
+            txtLog.Multiline = true;
+            txtLog.Name = "txtLog";
+            txtLog.ReadOnly = true;
+            txtLog.ScrollBars = ScrollBars.Vertical;
+            txtLog.Size = new Size(220, 130);
+            txtLog.TabIndex = 12;
+            // 
             // Sotano
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(939, 633);
+            Controls.Add(txtLog);
+            Controls.Add(pbCajaFuerte);
             Controls.Add(lblPuntaje);
             Controls.Add(lblIntentos);
             Controls.Add(lblTiempo);
@@ -160,14 +176,14 @@
             Controls.Add(txtRespuesta);
             Controls.Add(btnValidar);
             Controls.Add(btnPista);
-            Controls.Add(btnCajaFuerte);
-            Controls.Add(btnSala);
+            Controls.Add(btnCocina);
             Controls.Add(flpInventario);
             Controls.Add(pbSotano);
             Name = "Sotano";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sótano — Escape Room";
             ((System.ComponentModel.ISupportInitialize)pbSotano).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCajaFuerte).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -182,9 +198,10 @@
         private TextBox txtRespuesta;
         private Button btnValidar;
         private Button btnPista;
-        private Button btnCajaFuerte;
-        private Button btnSala;
+        private Button btnCocina;
         private FlowLayoutPanel flpInventario;
         private PictureBox pbSotano;
+        private PictureBox pbCajaFuerte;
+        private TextBox txtLog;
     }
 }

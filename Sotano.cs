@@ -18,6 +18,11 @@ namespace EscapeRoomDigitalPOO
             CargarPrimerAcertijo();
             MostrarInventario();
             ActualizarHUD();
+
+        }
+        private void AgregarLog(string mensaje)
+        {
+            txtLog.AppendText(mensaje + Environment.NewLine);
         }
 
         // ── Timer ──────────────────────────────────────────────────
@@ -181,55 +186,11 @@ namespace EscapeRoomDigitalPOO
             }
         }
 
-        // ── Botón Caja fuerte (manual) ─────────────────────────────
-        /// <summary>
-        /// El jugador puede intentar abrir la caja fuerte en cualquier
-        /// momento si ya tiene el código.
-        /// </summary>
-        private void btnCajaFuerte_Click(object sender, EventArgs e)
-        {
-            if (!gameManager.CajaFuerteDesbloqueada)
-            {
-                MessageBox.Show(
-                    "Aún no has resuelto suficientes acertijos para obtener el código.",
-                    "Caja bloqueada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            string intento = Microsoft.VisualBasic.Interaction.InputBox(
-                "Ingresa el código de la caja fuerte:",
-                "Caja Fuerte", "");
-
-            if (intento.Trim() == gameManager.CodigoCajaFuerte)
-            {
-                timer.Stop();
-                gameManager.GuardarResultado(segundosTranscurridos);
-
-                MessageBox.Show(
-                    $"¡Escapaste del sótano!\n\n" +
-                    $"Puntaje final: {gameManager.Puntaje} pts\n" +
-                    $"Tiempo: {segundosTranscurridos}s\n\n" +
-                    "Resultado guardado en Resultados.txt",
-                    "¡Victoria!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Asterisk);
-
-                // Volver a la Sala (final del juego)
-                Sala sala = new Sala(gameManager);
-                sala.Show();
-                this.Close();
-            }
-            else
-            {
-                MessageBox.Show("Código incorrecto. Inténtalo de nuevo.",
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         // ── Navegación ─────────────────────────────────────────────
-        private void btnSala_Click(object sender, EventArgs e)
+        private void btnCocina_Click(object sender, EventArgs e)
         {
-            Sala sala = new Sala(gameManager);
+            Cocina sala = new Cocina(gameManager);
             sala.Show();
             this.Hide();
         }
@@ -250,10 +211,66 @@ namespace EscapeRoomDigitalPOO
                     Tag = item
                 };
 
-                pb.Click += (s, e) =>
-                    MessageBox.Show("Seleccionaste: " + item.Nombre);
-
                 flpInventario.Controls.Add(pb);
+            }
+        }
+        private void pbCajaFuerte_Click(object sender, EventArgs e)
+        {
+            if (gameManager.EstadoCajaFuerte == 0)
+            {
+                // Verificar si ya tiene el código disponible
+                if (!gameManager.CajaFuerteDesbloqueada)
+                {
+                    MessageBox.Show(
+                        "La caja fuerte está cerrada.\n" +
+                        "Resuelve los acertijos para obtener el código.",
+                        "Caja Fuerte", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Ya tiene el código — pedir que lo ingrese
+                string intento = Microsoft.VisualBasic.Interaction.InputBox(
+                    $"Ingresa el código de la caja fuerte\n" +
+                    $"(Lo obtuviste al resolver los acertijos):",
+                    "Caja Fuerte", "");
+
+                if (string.IsNullOrWhiteSpace(intento))
+                    return;
+
+                if (intento.Trim() == gameManager.CodigoCajaFuerte)
+                {
+                    // Código correcto — abrir caja
+                    gameManager.EstadoCajaFuerte = 1;
+                    pbCajaFuerte.Image = Properties.Resources.CajaFuerteLLave;
+                    AgregarLog("¡Abriste la caja fuerte!");
+                }
+                else
+                {
+                    // Código incorrecto — volver a pedir
+                    MessageBox.Show(
+                        "Código incorrecto. Inténtalo de nuevo.",
+                        "Caja Fuerte", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (gameManager.EstadoCajaFuerte == 1)
+            {
+                // Segunda interacción — recoger la llave
+                gameManager.EstadoCajaFuerte = 2;
+                pbCajaFuerte.Image = Properties.Resources.CajaFuerteVacia;
+
+                gameManager.LlaveRecogida = true;
+                gameManager.Inventario.Add(new Item(
+                    "llave_Final",
+                    "Llave Final",
+                    Properties.Resources.LlaveFinal));
+
+                MostrarInventario();
+                AgregarLog("Recogiste la Llave Final de la caja fuerte.");
+            }
+            else
+            {
+                // Estado 2 — ya vacía
+                AgregarLog("La caja fuerte ya está vacía.");
             }
         }
     }

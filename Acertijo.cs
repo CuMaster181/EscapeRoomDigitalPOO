@@ -9,7 +9,7 @@ namespace EscapeRoomDigitalPOO
     public abstract class Acertijo : IResoluble
     {
         public string Pregunta { get; }
-        public string Pista { get; }
+        public virtual string Pista { get; }
         public int IntentosRestantes { get; private set; }
         public int PuntajeBase { get; }
 

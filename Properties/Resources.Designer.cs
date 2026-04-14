@@ -73,6 +73,66 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap CajaFuerte {
+            get {
+                object obj = ResourceManager.GetObject("CajaFuerte", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CajaFuerteLLave {
+            get {
+                object obj = ResourceManager.GetObject("CajaFuerteLLave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CajaFuerteVacia {
+            get {
+                object obj = ResourceManager.GetObject("CajaFuerteVacia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CajonCerrado {
+            get {
+                object obj = ResourceManager.GetObject("CajonCerrado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CajonUSB {
+            get {
+                object obj = ResourceManager.GetObject("CajonUSB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CajonVacio {
+            get {
+                object obj = ResourceManager.GetObject("CajonVacio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Cocina {
             get {
                 object obj = ResourceManager.GetObject("Cocina", resourceCulture);
@@ -173,6 +233,26 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap PcOff {
+            get {
+                object obj = ResourceManager.GetObject("PcOff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap PcOn {
+            get {
+                object obj = ResourceManager.GetObject("PcOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Puerta {
             get {
                 object obj = ResourceManager.GetObject("Puerta", resourceCulture);
@@ -226,6 +306,16 @@ namespace EscapeRoomDigitalPOO.Properties {
         public static System.Drawing.Bitmap Sotano {
             get {
                 object obj = ResourceManager.GetObject("Sotano", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Usb {
+            get {
+                object obj = ResourceManager.GetObject("Usb", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -16,6 +16,15 @@ namespace EscapeRoomDigitalPOO
         {
             numeroCorrecto = Random.Shared.Next(minimo, maximo + 1);
         }
+        public override string Pista
+        {
+            get
+            {
+                string paridad = numeroCorrecto % 2 == 0 ? "par" : "impar";
+                string rango = numeroCorrecto <= 5 ? "menor o igual a 5" : "mayor a 5";
+                return $"El número es {paridad} y {rango}.";
+            }
+        }
 
         protected override bool ValidarRespuesta(string respuesta)
         {

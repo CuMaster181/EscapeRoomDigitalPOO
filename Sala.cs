@@ -22,30 +22,12 @@ namespace EscapeRoomDigitalPOO
 
             ConfigurarTimer();
             MostrarInventario();
-            ActualizarHUD();
-
+            ActualizarHUD();;
             pbPuerta.Tag = "llave_Final";
-
-            pbPuerta.Image = Properties.Resources.Puerta;
-            pbLlave.Image = Properties.Resources.LlaveFinal;
-            pbLibro.Image = Properties.Resources.LibroClick;
-
-            pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLlave.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLibro.SizeMode = PictureBoxSizeMode.Zoom;
-
-            pbPuerta.Parent = pbSala;
-            pbLlave.Parent = pbSala;
-            pbLibro.Parent = pbSala;
-
-            pbPuerta.BackColor = Color.Transparent;
-            pbLlave.BackColor = Color.Transparent;
-            pbLibro.BackColor = Color.Transparent;
-
-            pbSala.Image = Properties.Resources.Sala;
+            pbPc.Tag = "USB";
 
             if (gameManager.LlaveRecogida)
-                pbLlave.Visible = false;
+                pbPc.Visible = false;
         }
 
         // ── Timer ──────────────────────────────────────────────────
@@ -78,23 +60,17 @@ namespace EscapeRoomDigitalPOO
         // ── Load ───────────────────────────────────────────────────
         private void Sala_Load(object sender, EventArgs e)
         {
-            pbSala.Image = Properties.Resources.Sala;
-            pbSala.SizeMode = PictureBoxSizeMode.StretchImage;
+            // Mover los hijos a pbSala aquí, no en el Designer
+            pbSala.Controls.Add(pbPc);
+            pbSala.Controls.Add(pbPuerta);
+            pbSala.Controls.Add(pbLibro);
 
-            pbPuerta.Parent = pbSala;
-            pbPuerta.Image = Properties.Resources.Puerta;
-            pbPuerta.SizeMode = PictureBoxSizeMode.Zoom;
-            pbPuerta.BackColor = Color.Transparent;
-            pbPuerta.Location = new Point(391, 75);
-
-            pbLlave.Parent = pbSala;
-            pbLlave.Image = Properties.Resources.LlaveFinal;
-            pbLlave.SizeMode = PictureBoxSizeMode.Zoom;
-            pbLlave.BackColor = Color.Transparent;
-            pbLlave.Visible = !gameManager.LlaveRecogida;
+            // Ajustar locations ya que ahora son relativas a pbSala
+            pbPc.Location = new Point(221, 223);
+            pbPuerta.Location = new Point(419, 123);
+            pbLibro.Location = new Point(140, 158);
 
             MostrarInventario();
-            AgregarLog("¡Bienvenido a la sala final!");
         }
 
         // ── Log ────────────────────────────────────────────────────
@@ -153,8 +129,8 @@ namespace EscapeRoomDigitalPOO
                     return;
                 }
 
-                PictureBox pb = (PictureBox)sender;
-                string llaveNecesaria = pb.Tag as string ?? "";
+                PictureBox? pb = sender as PictureBox;
+                string? llaveNecesaria = pb.Tag as string;
 
                 if (itemSeleccionado.Id == llaveNecesaria)
                 {
@@ -188,26 +164,41 @@ namespace EscapeRoomDigitalPOO
         }
 
         // ── Llave en suelo ─────────────────────────────────────────
-        private void pbLlave_Click(object sender, EventArgs e)
+        private void pbPc_Click(object sender, EventArgs e)
         {
-            gameManager.LlaveRecogida = true;
+            if (gameManager.EstadoPC == 0)
+            {
+                if (itemSeleccionado == null)
+                {
+                    AgregarLog("itemSeleccionado un item primero");
+                    return;
+                }
+                PictureBox? pb = sender as PictureBox;
+                string? USB = pb.Tag as string;
 
-            gameManager.Inventario.Add(new Item(
-                "llave_Final",
-                "Llave Final",
-                Properties.Resources.LlaveFinal));
-
-            pbLlave.Visible = false;
-            MostrarInventario();
-            AgregarLog("Recogiste la Llave Final");
+                if (itemSeleccionado.Id == USB)
+                {
+                    gameManager.EstadoPC = 1;
+                    pb.Image = Properties.Resources.PcOn;
+                    ConsumirItem();
+                }
+                else
+                {
+                    AgregarLog("Ese objeto no sirve aquí");
+                }
+            }
+            else
+            {
+                MessageBox.Show("La Pc ya esta encendida");
+            }
         }
 
-        // ── Navegación ─────────────────────────────────────────────
+                // ── Navegación ─────────────────────────────────────────────
         private void btnCocina(object sender, EventArgs e)
         {
-            Cocina cocina = new Cocina(gameManager);
-            cocina.Show();
-            this.Hide();
+             Cocina cocina = new Cocina(gameManager);
+             cocina.Show();
+             this.Hide();
         }
 
         private void btnSotano_Click(object sender, EventArgs e)
