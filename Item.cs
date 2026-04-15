@@ -11,12 +11,14 @@ namespace EscapeRoomDigitalPOO
         public string Id { get; set; }
         public string Nombre { get; set; }
         public Image Imagen { get; set; }
+        public Image? ImagenZoom { get; set; }
 
-        public Item(string id, string nombre, Image imagen)
+        public Item(string id, string nombre, Image imagen, Image? imagenZoom = null)
         {
             Id = id;
             Nombre = nombre;
             Imagen = imagen;
+            ImagenZoom = imagenZoom;
         }
     }
 }

@@ -22,6 +22,8 @@ namespace EscapeRoomDigitalPOO
         public int EstadoCajon { get; set; }
         public int EstadoCajaFuerte { get; set; }
         public int EstadoPC { get; set; }
+        public int EstadoEscritorio { get; set; }
+        public int EstadoEstanteriaOficina { get; set; }
         // Cuántos acertijos del sótano se han resuelto correctamente
         public int AciertosSotano { get; private set; }
 

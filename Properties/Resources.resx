@@ -130,9 +130,6 @@
   <data name="Fond" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Fond.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Fondo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Fondo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="LlaveFinal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Llave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -195,5 +192,32 @@
   </data>
   <data name="CajaFuerteVacia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CajaFuerteVacia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CodigoCuadro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CodigoCuadro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Cuadro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cuadro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Escritorio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Escritorio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EscritorioLupa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EscritorioLupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EscritorioVacio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EscritorioVacio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FondoOficina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FondoOficina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lupa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SimbolosCuadro" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SimbolosCuadro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EstanteriaOficina" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EstanteriaOficina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

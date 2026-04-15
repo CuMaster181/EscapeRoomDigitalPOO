@@ -166,7 +166,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.Fondo;
+            BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(939, 633);
             Controls.Add(pbPc);
             Controls.Add(pbLibro);

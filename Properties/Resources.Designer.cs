@@ -143,6 +143,56 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap CodigoCuadro {
+            get {
+                object obj = ResourceManager.GetObject("CodigoCuadro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Cuadro {
+            get {
+                object obj = ResourceManager.GetObject("Cuadro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Escritorio {
+            get {
+                object obj = ResourceManager.GetObject("Escritorio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap EscritorioLupa {
+            get {
+                object obj = ResourceManager.GetObject("EscritorioLupa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap EscritorioVacio {
+            get {
+                object obj = ResourceManager.GetObject("EscritorioVacio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap EstanteriaAbierta {
             get {
                 object obj = ResourceManager.GetObject("EstanteriaAbierta", resourceCulture);
@@ -156,6 +206,16 @@ namespace EscapeRoomDigitalPOO.Properties {
         public static System.Drawing.Bitmap EstanteriaCerrada {
             get {
                 object obj = ResourceManager.GetObject("EstanteriaCerrada", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap EstanteriaOficina {
+            get {
+                object obj = ResourceManager.GetObject("EstanteriaOficina", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +243,9 @@ namespace EscapeRoomDigitalPOO.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap Fondo {
+        public static System.Drawing.Bitmap FondoOficina {
             get {
-                object obj = ResourceManager.GetObject("Fondo", resourceCulture);
+                object obj = ResourceManager.GetObject("FondoOficina", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,6 +276,16 @@ namespace EscapeRoomDigitalPOO.Properties {
         public static System.Drawing.Bitmap LlaveFinal {
             get {
                 object obj = ResourceManager.GetObject("LlaveFinal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap lupa {
+            get {
+                object obj = ResourceManager.GetObject("lupa", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -296,6 +366,16 @@ namespace EscapeRoomDigitalPOO.Properties {
         public static System.Drawing.Bitmap Sala {
             get {
                 object obj = ResourceManager.GetObject("Sala", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap SimbolosCuadro {
+            get {
+                object obj = ResourceManager.GetObject("SimbolosCuadro", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
